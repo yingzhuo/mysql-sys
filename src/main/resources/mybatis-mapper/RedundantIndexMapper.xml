@@ -6,16 +6,16 @@
         <!-- @formatter:off -->
         <![CDATA[
         SELECT
-            table_schema,
-            table_name,
-            redundant_index_name,
-            redundant_index_columns,
-            redundant_index_non_unique,
-            dominant_index_name,
-            dominant_index_columns,
-            dominant_index_non_unique,
-            subpart_exists,
-            sql_drop_index
+            table_schema                 AS tableSchema,
+            table_name                   AS tableName,
+            redundant_index_name         AS redundantIndexName,
+            redundant_index_columns      AS redundantIndexColumns,
+            redundant_index_non_unique   AS redundantIndexNonUnique,
+            dominant_index_name          AS dominantIndexName,
+            dominant_index_columns       AS dominantIndexColumns,
+            dominant_index_non_unique    AS dominantIndexNonUnique,
+            subpart_exists               AS subpartExists,
+            sql_drop_index               AS sqlDropIndex
         FROM
             schema_redundant_indexes
         WHERE
@@ -28,16 +28,16 @@
         <!-- @formatter:off -->
         <![CDATA[
         SELECT
-            table_schema,
-            table_name,
-            redundant_index_name,
-            redundant_index_columns,
-            redundant_index_non_unique,
-            dominant_index_name,
-            dominant_index_columns,
-            dominant_index_non_unique,
-            subpart_exists,
-            sql_drop_index
+            table_schema                 AS tableSchema,
+            table_name                   AS tableName,
+            redundant_index_name         AS redundantIndexName,
+            redundant_index_columns      AS redundantIndexColumns,
+            redundant_index_non_unique   AS redundantIndexNonUnique,
+            dominant_index_name          AS dominantIndexName,
+            dominant_index_columns       AS dominantIndexColumns,
+            dominant_index_non_unique    AS dominantIndexNonUnique,
+            subpart_exists               AS subpartExists,
+            sql_drop_index               AS sqlDropIndex
         FROM
             schema_redundant_indexes
         WHERE

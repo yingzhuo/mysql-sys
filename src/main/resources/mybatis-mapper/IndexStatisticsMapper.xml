@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.yingzhuo.mysqlsys.model.mapper.IndexStatisticsMapper">
+
+    <select id="findAll" resultType="IndexStatistics">
+        <!-- @formatter:off -->
+        <![CDATA[
+        SELECT
+            table_schema        AS tableSchema,
+            table_name          AS tableName,
+            index_name          AS indexName,
+            rows_selected       AS rowsSelected,
+            rows_inserted       AS rowsInserted,
+            rows_updated        AS rowsUpdated,
+            rows_deleted        AS rowsDeleted
+        FROM
+            schema_index_statistics
+        WHERE
+            table_schema NOT IN ('performance_schema', 'sys', 'mysql')
+        ]]>
+        <!-- @formatter:on -->
+    </select>
+
+    <select id="findBySchemaName" parameterType="string" resultType="IndexStatistics">
+        <!-- @formatter:off -->
+        <![CDATA[
+        SELECT
+            table_schema        AS tableSchema,
+            table_name          AS tableName,
+            index_name          AS indexName,
+            rows_selected       AS rowsSelected,
+            rows_inserted       AS rowsInserted,
+            rows_updated        AS rowsUpdated,
+            rows_deleted        AS rowsDeleted
+        FROM
+            schema_index_statistics
+        WHERE
+            table_schema = #{schemaName}
+        ]]>
+        <!-- @formatter:on -->
+    </select>
+
+</mapper>

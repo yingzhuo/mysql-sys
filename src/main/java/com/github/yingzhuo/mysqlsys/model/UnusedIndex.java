@@ -10,6 +10,9 @@ import java.io.Serializable;
 
 /**
  * 未使用的索引
+ *
+ * @author 应卓
+ * @since 0.1.0
  */
 @Getter
 @Setter
