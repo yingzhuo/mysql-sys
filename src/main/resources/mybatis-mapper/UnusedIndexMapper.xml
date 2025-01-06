@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.yingzhuo.mysqlsys.model.mapper.UnusedIndexMapper">
+
+    <select id="findAll" resultType="UnusedIndex">
+        <!-- @formatter:off -->
+        <![CDATA[
+        SELECT
+            object_schema AS 'schemaName',
+            object_name   AS 'tableName',
+            index_name    AS 'indexName'
+        FROM
+            schema_unused_indexes
+        WHERE
+            object_schema NOT IN ('performance_schema', 'sys', 'mysql')
+        ]]>
+        <!-- @formatter:on -->
+    </select>
+
+    <select id="findBySchemaName" parameterType="string" resultType="UnusedIndex">
+        <!-- @formatter:off -->
+        <![CDATA[
+        SELECT
+            object_schema AS 'schemaName',
+            object_name   AS 'tableName',
+            index_name    AS 'indexName'
+        FROM
+            schema_unused_indexes
+        WHERE
+            object_schema = #{schemaName}
+        ]]>
+        <!-- @formatter:on -->
+    </select>
+
+</mapper>

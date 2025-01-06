@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.yingzhuo.mysqlsys.model.mapper.RedundantIndexMapper">
+
+    <select id="findAll" resultType="RedundantIndex">
+        <!-- @formatter:off -->
+        <![CDATA[
+        SELECT
+            table_schema,
+            table_name,
+            redundant_index_name,
+            redundant_index_columns,
+            redundant_index_non_unique,
+            dominant_index_name,
+            dominant_index_columns,
+            dominant_index_non_unique,
+            subpart_exists,
+            sql_drop_index
+        FROM
+            schema_redundant_indexes
+        WHERE
+            table_schema NOT IN ('performance_schema', 'sys', 'mysql')
+        ]]>
+        <!-- @formatter:on -->
+    </select>
+
+    <select id="findBySchemaName" parameterType="string" resultType="RedundantIndex">
+        <!-- @formatter:off -->
+        <![CDATA[
+        SELECT
+            table_schema,
+            table_name,
+            redundant_index_name,
+            redundant_index_columns,
+            redundant_index_non_unique,
+            dominant_index_name,
+            dominant_index_columns,
+            dominant_index_non_unique,
+            subpart_exists,
+            sql_drop_index
+        FROM
+            schema_redundant_indexes
+        WHERE
+            table_schema = #{schemaName}
+        ]]>
+        <!-- @formatter:on -->
+    </select>
+
+</mapper>

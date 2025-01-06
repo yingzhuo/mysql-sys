@@ -1,0 +1,103 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'org.springframework.boot' version '3.4.1'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+version = '0.1.0'
+
+ext['logback.version'] = '1.5.15'
+
+repositories {
+    mavenLocal()
+    maven { name = '阿里云'; url = 'https://maven.aliyun.com/repository/public/' }
+    maven { name = '阿里云(Spring)'; url = 'https://maven.aliyun.com/repository/spring/' }
+    maven { name = 'Spring(GA)'; url = 'https://repo.spring.io/release' }
+    maven { name = 'Spring(Milestone)'; url = 'https://repo.spring.io/milestone' }
+    maven { name = 'Spring(Snapshot)'; url = 'https://repo.spring.io/snapshot' }
+    mavenCentral()
+}
+
+dependencies {
+
+    // spring-boot and spring
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-logging'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    compileOnly 'org.springframework:spring-context-indexer'
+    annotationProcessor 'org.springframework:spring-context-indexer'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // JDBC驱动
+    implementation 'com.mysql:mysql-connector-j'
+
+    // mybatis
+    implementation 'com.baomidou:mybatis-plus-spring-boot3-starter:3.5.9'
+    implementation 'org.mybatis:mybatis:3.5.17'
+
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    compileJava.options.encoding = 'UTF-8'
+    compileTestJava.options.encoding = 'UTF-8'
+}
+
+jar {
+    enabled = false
+}
+
+springBoot {
+    buildInfo {
+        enabled = false
+    }
+
+    mainClass = 'com.github.yingzhuo.mysqlsys.ApplicationBoot'
+}
+
+bootJar {
+    manifest {
+        attributes(['Start-Class'           : 'com.github.yingzhuo.mysqlsys.ApplicationBoot',
+                    'Main-Class'            : 'org.springframework.boot.loader.launch.PropertiesLauncher',
+                    'Implementation-Version': "${project.version}",
+                    'Implementation-Title'  : 'mysql-sys',
+        ])
+    }
+
+    archiveFileName = "mysqlsys-${project.version}.${archiveExtension.get()}"
+
+    includeTools = false
+
+    layered {
+        enabled = false
+    }
+
+    excludes = [
+            '**/.DS_Store',
+            '**/.gitkeep',
+            '**/junit-*.jar',
+            '**/mockito-*.jar',
+            '**/opentest4j-*.jar',
+            '**/spring-test-*.jar',
+            '**/spring-boot-test-*.jar',
+            '**/spring-boot-configuration-processor-*.jar',
+            '**/spring-security-test-*.jar',
+            '**/log4j-api-*.jar',
+            '**/log4j-to-slf4j-*.jar'
+    ]
+}
+
+test {
+    useJUnitPlatform()
+}
