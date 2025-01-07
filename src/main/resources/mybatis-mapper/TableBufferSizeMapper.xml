@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.yingzhuo.mysqlsys.model.mapper.TableBufferSizeMapper">
+
+    <select id="findAll" resultType="TableBufferSize">
+        <!-- @formatter:off -->
+        <![CDATA[
+        SELECT
+            object_schema         AS schemaName,
+            object_name           AS tableName,
+            allocated             AS allocated,
+            data                  AS data
+        FROM
+            innodb_buffer_stats_by_table
+        WHERE
+            object_schema NOT IN ('mysql' , 'sys', 'performance_schema')
+        ORDER BY
+            allocated
+        ]]>
+        <!-- @formatter:on -->
+    </select>
+
+    <select id="findBySchemaName" parameterType="string" resultType="TableBufferSize">
+        <!-- @formatter:off -->
+        <![CDATA[
+        SELECT
+            object_schema         AS schemaName,
+            object_name           AS tableName,
+            allocated             AS allocated,
+            data                  AS data
+        FROM
+            innodb_buffer_stats_by_table
+        WHERE
+            object_schema = #{schemaName}
+        ORDER BY
+            allocated
+        ]]>
+        <!-- @formatter:on -->
+    </select>
+
+</mapper>
