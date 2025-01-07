@@ -7,7 +7,7 @@ import lombok.ToString;
 import java.io.Serializable;
 
 /**
- * 未使用的索引
+ * 表使用情况
  *
  * @author 应卓
  * @since 0.1.0
@@ -15,12 +15,12 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-public class UnusedIndex implements Serializable {
+public class TableUsage implements Serializable {
 
-    private String schemaName;
+    private String tableSchema;
 
     private String tableName;
 
-    private String indexName;
+    private Long io;
 
 }

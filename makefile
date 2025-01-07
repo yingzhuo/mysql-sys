@@ -21,10 +21,10 @@ compile:
 	@gradlew classes
 
 build:
-	@gradlew build -P"build-for-prod" -x"test"
+	@gradlew build -x"test"
 
 run:
-	@gradlew :playground-core:bootRun
+	@gradlew bootRun
 
 github: clean
 	@git add .

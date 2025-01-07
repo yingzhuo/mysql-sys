@@ -10,7 +10,7 @@ spring:
     import: [ ]
   main:
     web-application-type: servlet
-    banner-mode:  off
+    banner-mode: off
     allow-bean-definition-overriding: true
     allow-circular-references: false
     log-startup-info: true

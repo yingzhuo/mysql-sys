@@ -43,7 +43,6 @@ dependencies {
     // mybatis
     implementation 'com.baomidou:mybatis-plus-spring-boot3-starter:3.5.9'
     implementation 'org.mybatis:mybatis:3.5.17'
-
 }
 
 java {
@@ -83,15 +82,6 @@ bootJar {
     }
 
     excludes = [
-            '**/.DS_Store',
-            '**/.gitkeep',
-            '**/junit-*.jar',
-            '**/mockito-*.jar',
-            '**/opentest4j-*.jar',
-            '**/spring-test-*.jar',
-            '**/spring-boot-test-*.jar',
-            '**/spring-boot-configuration-processor-*.jar',
-            '**/spring-security-test-*.jar',
             '**/log4j-api-*.jar',
             '**/log4j-to-slf4j-*.jar'
     ]

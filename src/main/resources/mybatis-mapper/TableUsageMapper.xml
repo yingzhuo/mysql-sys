@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.yingzhuo.mysqlsys.model.mapper.TableUsageMapper">
+
+    <select id="findAll" resultType="TableUsage">
+        <!-- @formatter:off -->
+        <![CDATA[
+        SELECT
+            table_schema                              AS tableSchema,
+            table_name                                AS tableName,
+            SUM(io_read_requests + io_write_requests) AS io
+        FROM
+            sys.schema_table_statistics
+        WHERE
+            table_schema NOT IN ('mysql' , 'sys', 'performance_schema')
+        GROUP BY
+            table_schema, table_name
+        ORDER BY
+            io
+        DESC
+        ]]>
+        <!-- @formatter:on -->
+    </select>
+
+    <select id="findBySchemaName" parameterType="string" resultType="TableUsage">
+        <!-- @formatter:off -->
+        <![CDATA[
+        SELECT
+            table_schema                              AS tableSchema,
+            table_name                                AS tableName,
+            SUM(io_read_requests + io_write_requests) AS io
+        FROM
+            sys.schema_table_statistics
+        WHERE
+            table_schema = #{schemaName}
+        GROUP BY
+            table_schema, table_name
+        ORDER BY
+            io
+        DESC
+        ]]>
+        <!-- @formatter:on -->
+    </select>
+
+</mapper>
