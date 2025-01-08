@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.yingzhuo.mysqlsys.model.mapper.FullTableScanMapper">
+
+    <select id="findAll" resultType="FullTableScan">
+        <!-- @formatter:off -->
+        <![CDATA[
+        SELECT
+            query                      AS query,
+            db                         AS schemaName,
+            exec_count                 AS execCount,
+            total_latency              AS totalLatency,
+            no_index_used_count        AS noIndexUsedCount,
+            no_good_index_used_count   AS noGoodIndexUsedCount
+        FROM
+            statements_with_full_table_scans
+        WHERE
+            db NOT IN ('performance_schema', 'sys', 'mysql')
+        ]]>
+        <!-- @formatter:on -->
+    </select>
+
+    <select id="findBySchemaName" parameterType="string" resultType="FullTableScan">
+        <!-- @formatter:off -->
+        <![CDATA[
+        SELECT
+            query                      AS query,
+            db                         AS schemaName,
+            exec_count                 AS execCount,
+            total_latency              AS totalLatency,
+            no_index_used_count        AS noIndexUsedCount,
+            no_good_index_used_count   AS noGoodIndexUsedCount
+        FROM
+            statements_with_full_table_scans
+        WHERE
+            db = #{schemaName}
+        ]]>
+        <!-- @formatter:on -->
+    </select>
+
+</mapper>
