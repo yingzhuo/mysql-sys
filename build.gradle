@@ -38,11 +38,13 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     // JDBC驱动
-    implementation 'com.mysql:mysql-connector-j'
+    implementation('com.mysql:mysql-connector-j:9.1.0') {
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+    }
 
     // mybatis
-    implementation 'com.baomidou:mybatis-plus-spring-boot3-starter:3.5.9'
-    implementation 'org.mybatis:mybatis:3.5.17'
+    implementation 'com.baomidou:mybatis-plus-spring-boot3-starter:3.5.10.1'
+    implementation 'org.mybatis:mybatis:3.5.19'
 }
 
 java {
